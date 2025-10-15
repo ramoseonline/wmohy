@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 420 112" role="img" aria-label="راموس أونلاين">
+  <defs>
+    <style>
+      .blue{fill:#004AAD}
+      .gold{fill:#FFD700}
+      .orange{fill:#FFA600}
+    </style>
+  </defs>
+  <g>
+    <rect x="0" y="0" width="112" height="112" rx="20" class="blue"/>
+    <path class="gold" d="M56 22l10 20 22 3-16 15 4 22-20-10-20 10 4-22-16-15 22-3z"/>
+    <circle cx="56" cy="56" r="12" class="orange"/>
+  </g>
+  <g transform="translate(130,24)">
+    <path class="blue" d="M0 64h0z"/>
+    <text x="0" y="28" font-family="Tajawal, sans-serif" font-size="30" font-weight="700" class="blue">راموس أونلاين</text>
+    <text x="0" y="60" font-family="Tajawal, sans-serif" font-size="18" font-weight="500" class="orange">لوحة إدارة المعلمين</text>
+  </g>
+</svg>
