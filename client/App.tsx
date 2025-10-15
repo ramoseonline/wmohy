@@ -40,4 +40,9 @@ const AppRoot = () => {
   );
 };
 
-createRoot(document.getElementById("root")!).render(<AppRoot />);
+const container = document.getElementById("root")!;
+// Cache the root across HMR to avoid calling createRoot() twice on the same container
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const w = window as any;
+w.__fusion_root = w.__fusion_root || createRoot(container);
+w.__fusion_root.render(<AppRoot />);
