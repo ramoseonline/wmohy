@@ -11,10 +11,14 @@ export default function AuthShell({
 }) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-accent/10 via-background to-secondary/10">
-      <div className={cn("container mx-auto flex min-h-screen flex-col")}> 
+      <div className={cn("container mx-auto flex min-h-screen flex-col")}>
         <header className="flex items-center justify-between py-6">
           <div className="flex items-center gap-3">
-            <img src="https://cdn.builder.io/api/v1/image/assets%2Fed401c9a1ea24dc9b78123cf1ccb99a0%2Fd105d53fc52f4907b02a9b7b2caadfa4?format=webp&width=800" alt="شعار WMOHY" className="h-14 md:h-16 w-auto" />
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fed401c9a1ea24dc9b78123cf1ccb99a0%2Fd105d53fc52f4907b02a9b7b2caadfa4?format=webp&width=800"
+              alt="شعار WMOHY"
+              className="h-14 md:h-16 w-auto"
+            />
           </div>
         </header>
         <main className="flex flex-1 items-center justify-center py-8">
@@ -24,7 +28,11 @@ export default function AuthShell({
             </div>
             <div className="order-1 md:order-2 flex items-center justify-center">
               <div className="rounded-2xl bg-white p-10 shadow-xl border-4 border-accent flex items-center justify-center">
-                <img src="https://cdn.builder.io/api/v1/image/assets%2Fed401c9a1ea24dc9b78123cf1ccb99a0%2Fd105d53fc52f4907b02a9b7b2caadfa4?format=webp&width=800" alt="شعار WMOHY" className="h-32 md:h-40 w-auto" />
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2Fed401c9a1ea24dc9b78123cf1ccb99a0%2Fd105d53fc52f4907b02a9b7b2caadfa4?format=webp&width=800"
+                  alt="شعار WMOHY"
+                  className="h-32 md:h-40 w-auto"
+                />
               </div>
             </div>
           </div>

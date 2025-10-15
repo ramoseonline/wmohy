@@ -24,7 +24,7 @@ export default function Register() {
   useEffect(() => {
     if (!isSupabaseConfigured()) {
       setNotice(
-        "لتفعيل عملية التسجيل وإرسال رابط التفعيل عبر البريد، يرجى توصيل Supabase عبر MCP."
+        "لتفعيل عملية التسجيل وإرسال رابط التفعيل عبر البريد، يرجى توصيل Supabase عبر MCP.",
       );
     } else {
       setNotice(null);
@@ -51,7 +51,9 @@ export default function Register() {
         },
       });
       if (error) throw error;
-      setSuccess("تم إنشاء الحساب. يرجى التحقق من بريدك الإلكتروني لتفعيل الحساب.");
+      setSuccess(
+        "تم إنشاء الحساب. يرجى التحقق من بريدك الإلكتروني لتفعيل الحساب.",
+      );
     } catch (err: any) {
       setError(err?.message || "حدث خطأ غير متوقع");
     } finally {
@@ -60,37 +62,73 @@ export default function Register() {
   }
 
   return (
-    <AuthShell title="إنشاء حساب معلم" subtitle="أدخل بياناتك للتسجيل وسيتم ��رسال رابط التفعيل إلى بريدك">
+    <AuthShell
+      title="إنشاء حساب معلم"
+      subtitle="أدخل بياناتك للتسجيل وسيتم ��رسال رابط التفعيل إلى بريدك"
+    >
       <Card className="shadow-xl border-accent">
         <CardHeader>
           <CardTitle className="text-2xl">تسجيل حساب جديد</CardTitle>
         </CardHeader>
         <CardContent>
           {notice ? (
-            <div className="mb-4 rounded-md border border-accent bg-accent/10 p-3 text-sm">{notice}</div>
+            <div className="mb-4 rounded-md border border-accent bg-accent/10 p-3 text-sm">
+              {notice}
+            </div>
           ) : null}
           {error ? (
-            <div className="mb-4 rounded-md border border-destructive bg-destructive/10 p-3 text-sm">{error}</div>
+            <div className="mb-4 rounded-md border border-destructive bg-destructive/10 p-3 text-sm">
+              {error}
+            </div>
           ) : null}
           {success ? (
-            <div className="mb-4 rounded-md border border-primary bg-primary/10 p-3 text-sm">{success}</div>
+            <div className="mb-4 rounded-md border border-primary bg-primary/10 p-3 text-sm">
+              {success}
+            </div>
           ) : null}
           <form onSubmit={onSubmit} className="space-y-4">
             <div className="grid gap-2">
               <Label htmlFor="name">الاسم الكامل</Label>
-              <Input id="name" required value={name} onChange={(e) => setName(e.target.value)} />
+              <Input
+                id="name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="email">البريد الإلكتروني</Label>
-              <Input id="email" type="email" inputMode="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input
+                id="email"
+                type="email"
+                inputMode="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">كلمة المرور</Label>
-              <Input id="password" type="password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Input
+                id="password"
+                type="password"
+                required
+                minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>{loading ? "جارٍ الإرسال..." : "إنشاء الحساب"}</Button>
-            <p className="text-center text-sm">لديك حساب بالفعل؟ {" "}
-              <Link to="/" className="text-primary underline-offset-4 hover:underline">تسجيل الدخول</Link>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "جارٍ الإرسال..." : "إنشاء الحساب"}
+            </Button>
+            <p className="text-center text-sm">
+              لديك حساب بالفعل؟{" "}
+              <Link
+                to="/"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                تسجيل الدخول
+              </Link>
             </p>
           </form>
         </CardContent>

@@ -22,7 +22,7 @@ export default function ResetPassword() {
   useEffect(() => {
     if (!isSupabaseConfigured()) {
       setNotice(
-        "لاستعادة كلمة المرور عبر البريد، يرجى توصيل Supabase عبر MCP."
+        "لاستعادة كلمة المرور عبر البريد، يرجى توصيل Supabase عبر MCP.",
       );
     } else {
       setNotice(null);
@@ -53,29 +53,53 @@ export default function ResetPassword() {
   }
 
   return (
-    <AuthShell title="استعادة كلمة المرور" subtitle="أدخل بريدك الإلكتروني وسنرسل رابط الاستعادة">
+    <AuthShell
+      title="استعادة كلمة المرور"
+      subtitle="أدخل بريدك الإلكتروني وسنرسل رابط الاستعادة"
+    >
       <Card className="shadow-xl border-accent">
         <CardHeader>
           <CardTitle className="text-2xl">نسيت كلمة المرور</CardTitle>
         </CardHeader>
         <CardContent>
           {notice ? (
-            <div className="mb-4 rounded-md border border-accent bg-accent/10 p-3 text-sm">{notice}</div>
+            <div className="mb-4 rounded-md border border-accent bg-accent/10 p-3 text-sm">
+              {notice}
+            </div>
           ) : null}
           {error ? (
-            <div className="mb-4 rounded-md border border-destructive bg-destructive/10 p-3 text-sm">{error}</div>
+            <div className="mb-4 rounded-md border border-destructive bg-destructive/10 p-3 text-sm">
+              {error}
+            </div>
           ) : null}
           {success ? (
-            <div className="mb-4 rounded-md border border-primary bg-primary/10 p-3 text-sm">{success}</div>
+            <div className="mb-4 rounded-md border border-primary bg-primary/10 p-3 text-sm">
+              {success}
+            </div>
           ) : null}
           <form onSubmit={onSubmit} className="space-y-4">
             <div className="grid gap-2">
               <Label htmlFor="email">البريد الإلكتروني</Label>
-              <Input id="email" type="email" inputMode="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input
+                id="email"
+                type="email"
+                inputMode="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>{loading ? "جارٍ الإرسال..." : "إرسال رابط الاستعادة"}</Button>
-            <p className="text-center text-sm">تذكرت كلمة المرور؟ {" "}
-              <Link to="/" className="text-primary underline-offset-4 hover:underline">العودة لتسجيل الدخول</Link>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "جارٍ الإرسال..." : "إرسال رابط الاستعادة"}
+            </Button>
+            <p className="text-center text-sm">
+              تذكرت كلمة المرور؟{" "}
+              <Link
+                to="/"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                العودة لتسجيل الدخول
+              </Link>
             </p>
           </form>
         </CardContent>

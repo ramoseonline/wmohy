@@ -23,7 +23,7 @@ export default function Index() {
   useEffect(() => {
     if (!isSupabaseConfigured()) {
       setNotice(
-        "لتفعيل التسجيل وتأكيد البريد واستعادة كلمة المرور، يرجى توصيل Supabase عبر MCP: افتح Open MCP popover ثم Connect to Supabase."
+        "لتفعيل التسجيل وتأكيد البريد واستعادة كلمة المرور، يرجى توصيل Supabase عبر MCP: افتح Open MCP popover ثم Connect to Supabase.",
       );
     } else {
       setNotice(null);
@@ -40,7 +40,10 @@ export default function Index() {
         setError("الاعتماد غير مهيأ. يرجى توصيل Supabase.");
         return;
       }
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
       if (error) throw error;
       navigate("/dashboard", { replace: true });
     } catch (err: any) {
@@ -95,7 +98,10 @@ export default function Index() {
               />
             </div>
             <div className="flex items-center justify-between">
-              <Link to="/reset-password" className="text-sm text-primary underline-offset-4 hover:underline">
+              <Link
+                to="/reset-password"
+                className="text-sm text-primary underline-offset-4 hover:underline"
+              >
                 نسيت كلمة المرور؟
               </Link>
             </div>
@@ -103,8 +109,11 @@ export default function Index() {
               {loading ? "جارٍ التحقق..." : "تسجيل الدخول"}
             </Button>
             <p className="text-center text-sm">
-              ليس لديك حساب؟ {" "}
-              <Link to="/register" className="text-primary underline-offset-4 hover:underline">
+              ليس لديك حساب؟{" "}
+              <Link
+                to="/register"
+                className="text-primary underline-offset-4 hover:underline"
+              >
                 إنشاء حساب للمعلمين
               </Link>
             </p>
