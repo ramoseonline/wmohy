@@ -27,7 +27,7 @@ export default function Dashboard() {
       <div className="container mx-auto py-10">
         <header className="flex items-center justify-between py-6">
           <div className="flex items-center gap-3">
-            <img src="/logo.svg" alt="الشعار" className="h-10 w-auto" />
+            <img src="https://cdn.builder.io/api/v1/image/assets%2Fed401c9a1ea24dc9b78123cf1ccb99a0%2Fd105d53fc52f4907b02a9b7b2caadfa4?format=webp&width=800" alt="شعار WMOHY" className="h-10 w-auto" />
           </div>
           <div className="flex items-center gap-3">
             {isSupabaseConfigured() && (
