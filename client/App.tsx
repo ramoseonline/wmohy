@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import Index from "./pages/Index";
 import Register from "./pages/Register";
 import ResetPassword from "./pages/ResetPassword";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
