@@ -41,8 +41,18 @@ const AppRoot = () => {
 };
 
 const container = document.getElementById("root")!;
-// Cache the root across HMR to avoid calling createRoot() twice on the same container
+// Robust HMR-safe root reuse: prefer Vite HMR data store, fallback to window cache
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const w = window as any;
-w.__fusion_root = w.__fusion_root || createRoot(container);
-w.__fusion_root.render(<AppRoot />);
+let root: any = (import.meta as any).hot?.data?.root;
+if (!root) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const w = window as any;
+  root = w.__fusion_root || createRoot(container);
+  w.__fusion_root = root;
+}
+root.render(<AppRoot />);
+if ((import.meta as any).hot) {
+  (import.meta as any).hot.dispose((data: any) => {
+    data.root = root;
+  });
+}
