@@ -19,7 +19,6 @@ export default function Index() {
     document.documentElement.setAttribute("lang", "ar");
   }, []);
 
-
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);

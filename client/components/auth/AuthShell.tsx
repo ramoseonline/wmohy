@@ -34,9 +34,13 @@ export default function AuthShell({
                   className="h-32 md:h-40 w-auto"
                 />
                 <div className="text-center md:text-right">
-                  <h1 className="text-3xl md:text-4xl font-extrabold text-secondary mb-2">{title}</h1>
+                  <h1 className="text-3xl md:text-4xl font-extrabold text-secondary mb-2">
+                    {title}
+                  </h1>
                   {subtitle ? (
-                    <p className="text-primary text-lg leading-relaxed max-w-sm">{subtitle}</p>
+                    <p className="text-primary text-lg leading-relaxed max-w-sm">
+                      {subtitle}
+                    </p>
                   ) : null}
                 </div>
               </div>
