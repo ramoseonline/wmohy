@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import AuthShell from "@/components/auth/AuthShell";
-import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
+import { getSupabase } from "@/lib/supabase";
 
 export default function Index() {
   const navigate = useNavigate();
@@ -13,22 +13,12 @@ export default function Index() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [notice, setNotice] = useState<string | null>(null);
 
   useEffect(() => {
     document.documentElement.setAttribute("dir", "rtl");
     document.documentElement.setAttribute("lang", "ar");
   }, []);
 
-  useEffect(() => {
-    if (!isSupabaseConfigured()) {
-      setNotice(
-        "لتفعيل التسجيل وتأكيد البريد واستعادة كلمة المرور، يرجى توصيل Supabase عبر MCP: افتح Open MCP popover ثم Connect to Supabase.",
-      );
-    } else {
-      setNotice(null);
-    }
-  }, []);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -37,7 +27,7 @@ export default function Index() {
     try {
       const supabase = getSupabase();
       if (!supabase) {
-        setError("الاعتماد غير مهيأ. يرجى توصيل Supabase.");
+        setError("خدمة المصادقة غير مهيأة.");
         return;
       }
       const { error } = await supabase.auth.signInWithPassword({
@@ -63,11 +53,6 @@ export default function Index() {
           <CardTitle className="text-2xl">تسجيل الدخول للمعلمين</CardTitle>
         </CardHeader>
         <CardContent>
-          {notice ? (
-            <div className="mb-4 rounded-md border border-accent bg-accent/10 p-3 text-sm">
-              {notice}
-            </div>
-          ) : null}
           {error ? (
             <div className="mb-4 rounded-md border border-destructive bg-destructive/10 p-3 text-sm">
               {error}
