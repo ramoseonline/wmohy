@@ -25,6 +25,15 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+  app.get("/api/email/verify", emailLimiter, async (_req, res) => {
+    try {
+      const { verifySmtp } = await import("./utils/mailer");
+      const ok = await verifySmtp();
+      res.json({ ok: !!ok });
+    } catch (e: any) {
+      res.status(500).json({ error: e?.message || "SMTP verify failed" });
+    }
+  });
   app.post("/api/email/test", emailLimiter, sendTestEmail);
 
   return app;
