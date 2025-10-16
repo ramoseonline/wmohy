@@ -18,6 +18,11 @@ export function getTransport() {
   });
 }
 
+export async function verifySmtp() {
+  const transporter = getTransport();
+  return transporter.verify();
+}
+
 export async function sendMail({
   to,
   subject,
