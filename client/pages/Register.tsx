@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import AuthShell from "@/components/auth/AuthShell";
-import { getSupabase } from "@/lib/supabase";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -26,23 +25,14 @@ export default function Register() {
     setSuccess(null);
     setLoading(true);
     try {
-      const supabase = getSupabase();
-      if (!supabase) {
-        setError("خدمة المصادقة غير مهيأة.");
-        return;
-      }
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: window.location.origin,
-          data: { name },
-        },
+      const verifyLink = `${window.location.origin}/?verify=1&email=${encodeURIComponent(email)}`;
+      const res = await fetch("/api/email/test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ to: email, subject: "تأكيد البريد الإلكتروني", message: `مرحباً ${name}! اضغط الرابط للتفعيل: ${verifyLink}` }),
       });
-      if (error) throw error;
-      setSuccess(
-        "تم إنشاء الحساب. يرجى التحقق من بريدك الإلكتروني لتفعيل الحساب.",
-      );
+      if (!res.ok) throw new Error("تعذر إرسال البريد");
+      setSuccess("تم إنشاء الحساب. يرجى التحقق من بريدك الإلكتروني لتفعيل الحساب.");
     } catch (err: any) {
       setError(err?.message || "حدث خطأ غير متوقع");
     } finally {
