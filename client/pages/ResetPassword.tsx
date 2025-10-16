@@ -32,7 +32,14 @@ export default function ResetPassword() {
           message: "رابط استعادة كلمة المرور الخاص بك",
         }),
       });
-      if (!res.ok) throw new Error("تعذر إرسال البريد");
+      if (!res.ok) {
+        let msg = "تعذر إرسال البريد";
+        try {
+          const data = await res.json();
+          if (data?.error) msg = data.error;
+        } catch {}
+        throw new Error(msg);
+      }
       setSuccess("تم إرسال رسالة إلى بريدك الإلكتروني.");
     } catch (err: any) {
       setError(err?.message || "حدث خطأ غير متوقع");
