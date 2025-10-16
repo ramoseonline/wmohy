@@ -3,7 +3,8 @@ import nodemailer from "nodemailer";
 export function getTransport() {
   const host = process.env.SMTP_HOST;
   const port = Number(process.env.SMTP_PORT || 587);
-  let secure = String(process.env.SMTP_SECURE || "false").toLowerCase() === "true";
+  let secure =
+    String(process.env.SMTP_SECURE || "false").toLowerCase() === "true";
   if (port === 465 && !secure) secure = true; // Implicit TLS for port 465
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
