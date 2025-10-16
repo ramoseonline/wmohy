@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import AuthShell from "@/components/auth/AuthShell";
-import { getSupabase } from "@/lib/supabase";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
@@ -24,16 +23,13 @@ export default function ResetPassword() {
     setSuccess(null);
     setLoading(true);
     try {
-      const supabase = getSupabase();
-      if (!supabase) {
-        setError("خدمة المصادقة غير مهيأة.");
-        return;
-      }
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: window.location.origin,
+      const res = await fetch("/api/email/test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ to: email, subject: "استعادة كلمة المرور", message: "رابط استعادة كلمة المرور الخاص بك" }),
       });
-      if (error) throw error;
-      setSuccess("تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني.");
+      if (!res.ok) throw new Error("تعذر إرسال البريد");
+      setSuccess("تم إرسال رسالة إلى بريدك الإلكتروني.");
     } catch (err: any) {
       setError(err?.message || "حدث خطأ غير متوقع");
     } finally {
