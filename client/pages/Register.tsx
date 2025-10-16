@@ -35,7 +35,14 @@ export default function Register() {
           message: `مرحباً ${name}! اضغط الرابط للتفعيل: ${verifyLink}`,
         }),
       });
-      if (!res.ok) throw new Error("تعذر إرسال البريد");
+      if (!res.ok) {
+        let msg = "تعذر إرسال البريد";
+        try {
+          const data = await res.json();
+          if (data?.error) msg = data.error;
+        } catch {}
+        throw new Error(msg);
+      }
       setSuccess(
         "تم إنشاء الحساب. يرجى التحقق من بريدك الإلكتروني لتفعيل الحساب.",
       );
