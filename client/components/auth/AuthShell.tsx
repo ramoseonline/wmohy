@@ -39,9 +39,13 @@ export default function AuthShell({
                     />
                   </div>
                   <div className="mt-6 md:mt-0 text-center md:text-right max-w-md">
-                    <h1 className="text-3xl md:text-4xl font-extrabold text-secondary">{title}</h1>
+                    <h1 className="text-3xl md:text-4xl font-extrabold text-secondary">
+                      {title}
+                    </h1>
                     {subtitle ? (
-                      <p className="mt-3 text-lg leading-relaxed text-primary">{subtitle}</p>
+                      <p className="mt-3 text-lg leading-relaxed text-primary">
+                        {subtitle}
+                      </p>
                     ) : null}
                     <div className="mt-6 flex items-center justify-center md:justify-start gap-3">
                       <span className="inline-block h-2 w-10 rounded-full bg-primary"></span>

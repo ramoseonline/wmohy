@@ -29,10 +29,16 @@ export default function Register() {
       const res = await fetch("/api/email/test", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ to: email, subject: "تأكيد البريد الإلكتروني", message: `مرحباً ${name}! اضغط الرابط للتفعيل: ${verifyLink}` }),
+        body: JSON.stringify({
+          to: email,
+          subject: "تأكيد البريد الإلكتروني",
+          message: `مرحباً ${name}! اضغط الرابط للتفعيل: ${verifyLink}`,
+        }),
       });
       if (!res.ok) throw new Error("تعذر إرسال البريد");
-      setSuccess("تم إنشاء الحساب. يرجى التحقق من بريدك الإلكتروني لتفعيل الحساب.");
+      setSuccess(
+        "تم إنشاء الحساب. يرجى التحقق من بريدك الإلكتروني لتفعيل الحساب.",
+      );
     } catch (err: any) {
       setError(err?.message || "حدث خطأ غير متوقع");
     } finally {

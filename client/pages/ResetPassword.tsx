@@ -26,7 +26,11 @@ export default function ResetPassword() {
       const res = await fetch("/api/email/test", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ to: email, subject: "استعادة كلمة المرور", message: "رابط استعادة كلمة المرور الخاص بك" }),
+        body: JSON.stringify({
+          to: email,
+          subject: "استعادة كلمة المرور",
+          message: "رابط استعادة كلمة المرور الخاص بك",
+        }),
       });
       if (!res.ok) throw new Error("تعذر إرسال البريد");
       setSuccess("تم إرسال رسالة إلى بريدك الإلكتروني.");

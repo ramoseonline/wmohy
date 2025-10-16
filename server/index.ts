@@ -19,7 +19,10 @@ export function createServer() {
     res.json({ message: ping });
   });
 
-  const emailLimiter = rateLimit({ windowMs: 60 * 1000, limit: Number(process.env.RATE_LIMIT_PER_MIN || 10) });
+  const emailLimiter = rateLimit({
+    windowMs: 60 * 1000,
+    limit: Number(process.env.RATE_LIMIT_PER_MIN || 10),
+  });
 
   app.get("/api/demo", handleDemo);
   app.post("/api/email/test", emailLimiter, sendTestEmail);
